@@ -1,59 +1,45 @@
 {% block content %}
 {% load static %}
 
-<h1>Liste des modules {{ title }}</h1>
-
-<div class="row">
-  <div class="col-md-4">
-    <!-- Search Form -->
-    <form method="get" action="{% url 'liste_modules' %}" class="form-inline">
-      <div class="form-group">
-        <label for="search" class="sr-only">Recherche par nom de module:</label>
-        <input type="text" name="search" id="search" value="{{ request.GET.search }}" class="form-control" placeholder="Recherche par nom de module">
+<div class="d-flex justify-content-center">
+  <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{% static 'cupagis.jpg' %}" class="d-block w-100" alt="Bienvenu au Cupagis" style="max-width: 450px;">
       </div>
-      <button type="submit" class="btn btn-primary">Recherche </button>
-    </form>
-  </div>
-
-  <div class="col-md-3">
-    <!-- Filter Form -->
-    <form method="get" action="{% url 'liste_modules' %}" class="form-inline">
-      <div class="form-group">
-        <label for="niveau" class="sr-only">Filtrer par niveau:</label>
-        <select name="niveau" id="niveau" class="form-control">
-          <option value="">Tout</option>
-          <option value="M1">Master 1</option>
-          <option value="M2">Master 2</option>
-        </select>
+      <div class="carousel-item ">
+        <img src="{% static 'cupagis 1.jpg' %}" class="d-block w-100" alt="Bienvenu au Cupagis" style="max-width: 450px;">
       </div>
-      <div class="form-group">
-        <label for="semestre" class="sr-only">Filtrer par semestre:</label>
-        <select name="semestre" id="semestre" class="form-control">
-          <option value="">Tout</option>
-          <option value="S1">Semestre 1</option>
-          <option value="S2">Semestre 2</option>
-        </select>
-      </div>
-      <button type="submit" class="btn btn-primary">Filter</button>
-    </form>
+    </div>
   </div>
 </div>
+
+
+
 <br>
 
 <div class="row row-cols-1 row-cols-md-3 g-4">
-  {% for module in modules %}
-    <div class="col">
-      <div class="card h-100">
-        <div class="card-body">
-          <h5 class="card-title">Module: {{ module.nom_Module }}</h5>
-          <p class="card-text">Niveau: {{ module.niveau }}</p>
-          <p class="card-text">Semestre: {{ module.semestre }}</p>
-          <p class="card-text">Enseigné par: {{ module.prof }}</p>
-          <a href="#" class="btn btn-primary">Plus</a>
+  {% if modules %}
+    {% for module in modules %}
+      <div class="col">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">Module: {{ module.nom_Module }}</h5>
+            <p class="card-text">Niveau: {{ module.niveau }}</p>
+            <p class="card-text">Semestre: {{ module.semestre }}</p>
+            <p class="card-text">Enseigné par: {{ module.prof }}</p>
+            <a href="{% url 'module_detail' module.id module.nom_Module %}" class="btn btn-warning">Plus</a>
+          </div>
         </div>
       </div>
+    {% endfor %}
+  {% else %}
+  <div class="justify-content-center text-center"> <!-- Center the alert -->
+    <div class="alert alert-warning" role="alert">
+      Aucun module ne correspond à vos critères de recherche!
     </div>
-  {% endfor %}
+  </div>
+  {% endif %}
 </div>
 
 {% endblock %}

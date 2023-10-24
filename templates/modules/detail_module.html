@@ -1,0 +1,118 @@
+{% extends "../Cupagis_system/layout.html" %}
+
+{% block content %}
+{% load static %}
+<style>
+    .horizontal-margin {
+      margin-right: 10px; /* Vous pouvez ajuster la valeur selon vos besoins */
+    }
+  </style>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-success">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'liste_modules' %}">
+          <img src="{% static 'logo-cupagis.png' %}" alt="Cupagis" style="max-width:50px;">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link text-light" aria-current="page" href="{% url 'liste_modules' %}">Accueil</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+    <div class="container">
+        <h1 class="mt-4">Module : {{ module.nom_Module }}</h1>
+
+        <h2 class="mt-4">Détails du Module</h2>
+        <ul class="list-group">
+            <li class="list-group-item">Niveau : {{ module.niveau }}</li>
+            <li class="list-group-item">Semestre : {{ module.semestre }}</li>
+            <li class="list-group-item">Enseigné par : {{ module.prof }}</li>
+        </ul>
+
+        <h2 class="mt-4">Cours</h2>
+        {% if courses %}
+        <div class="accordion mt-3" id="courseAccordion">
+            {% for course in courses %}
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading{{ course.id }}">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCourse{{ course.id }}" aria-expanded="false" aria-controls="collapseCourse{{ course.id }}">
+                            {{ course.titre_Cour }}
+                        </button>
+                    </h2>
+                    <div id="collapseCourse{{ course.id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ course.id }}" data-bs-parent="#courseAccordion">
+                        <div class="accordion-body">
+                            <p><strong>Date de Création :</strong> {{ course.date_Creation }}</p>
+                            <a href="{{ course.fichier_Cour.url }}" target="_blank" class="btn btn-primary">Télécharger</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p class="mt-3">Aucun cours disponible pour ce module.</p>
+        {% endif %}
+
+        <h2 class="mt-4">Travaux Pratiques</h2>
+        {% if tps %}
+        <div class="accordion mt-3" id="tpAccordion">
+            {% for tp in tps %}
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading{{ tp.id }}">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTP{{ tp.id }}" aria-expanded="false" aria-controls="collapseTP{{ tp.id }}">
+                            {{ tp.titre_TP }}
+                        </button>
+                    </h2>
+                    <div id="collapseTP{{ tp.id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ tp.id }}" data-bs-parent="#tpAccordion">
+                        <div class="accordion-body">
+                            <p><strong>Date de Création :</strong> {{ tp.date_Creation }}</p>
+                            <a href="{{ tp.fichier_TP.url }}" target="_blank" class="btn btn-primary">Télécharger</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        {% else %}
+            <p class="mt-3">Aucun travail pratique disponible pour ce module.</p>
+        {% endif %}
+        <h2 class="mt-4">Exposé</h2>
+        {% if exposes %}
+        <div class="accordion mt-3" id="exposéAccordion">
+            {% for expose in exposes %}
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading{{ expose.id }}">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTP{{ tp.id }}" aria-expanded="false" aria-controls="collapseTP{{ tp.id }}">
+                            {{ expose.sujet }}
+                        </button>
+                    </h2>
+                    <div id="collapseTP{{ tp.id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ tp.id }}" data-bs-parent="#tpAccordion">
+                        <div class="accordion-body">
+                            <p><strong>Sujet intitulé:</strong> {{ expose.sujet }}</p>
+                            <p><strong>Date de Création:</strong> {{ expose.date_Creation }}</p>
+                            <p class="badge bg-danger"><strong>À remettre:</strong> {{ expose.date_fin }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        {% else %}
+            <p class="mt-3">Aucun travail pratique disponible pour ce module.</p>
+        {% endif %}
+    </div>
+<br>
+    <div id="footer" class="bg-success text-light p-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="text-center">&copy; 2023 Tous droits réservés par Cupagis-umab et devloppé par <a href="https://www.instagram.com/ma_habibou/" target="_blank" class="text-light" style="text-decoration: none; font-weight: bold;">Habibou</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

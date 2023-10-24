@@ -39,3 +39,12 @@ class TP(models.Model):
     
     def __str__(self):
             return self.titre_TP
+
+class Expose(models.Model):
+    module = models.ForeignKey(Module,verbose_name='nom de module', on_delete=models.SET)
+    sujet = models.TextField(verbose_name='sujet expose')
+    date_fin = models.DateTimeField(null=True)  # Vous pouvez utiliser FileField pour les fichiers
+    date_Creation = models.DateTimeField(verbose_name='date joined', auto_now_add=True)
+    
+    def __str__(self):
+            return self.sujet

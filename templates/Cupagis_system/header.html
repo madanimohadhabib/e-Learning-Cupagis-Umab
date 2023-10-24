@@ -1,16 +1,43 @@
 {% block content %}
 {% load static %}
+
+<style>
+  .horizontal-margin {
+    margin-right: 10px; /* Vous pouvez ajuster la valeur selon vos besoins */
+  }
+</style>
 <header>
-<ul class="nav nav-pills nav-fill gap-2 p-1 small bg-primary rounded-5 shadow-sm" id="pillNav2" role="tablist" style="--bs-nav-link-color: var(--bs-white); --bs-nav-pills-link-active-color: var(--bs-primary); --bs-nav-pills-link-active-bg: var(--bs-white);">
-    <li class="nav-item" role="presentation">
-      <button class="nav-link active rounded-5" id="home-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="true">Home</button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button class="nav-link rounded-5" id="profile-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="false">Profile</button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button class="nav-link rounded-5" id="contact-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="false">Contact</button>
-    </li>
-  </ul>
+  <nav class="navbar navbar-expand-lg navbar-light bg-success">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'liste_modules' %}">
+        <img src="{% static 'logo-cupagis.png' %}" alt="Cupagis" style="max-width:50px;">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link text-light" aria-current="page" href="{% url 'liste_modules' %}">Accueil</a>
+          </li>
+        </ul>
+        <form method="get" action="{% url 'liste_modules' %}" class="d-flex">
+          <div class="form-group horizontal-margin ">
+            <input type="text" name="search" id="search" value="{{ request.GET.search }}" class="form-control" placeholder="Recherche par module">
+          </div>
+          <div class="form-group horizontal-margin ">
+            <select name="semestre" id="semestre" class="form-control">
+              <option value="">Filter par semestre</option>
+              <option value="S1">Semestre 1</option>
+              <option value="S2">Semestre 2</option>
+            </select>
+          </div>
+          <div class="horizontal-margin">
+          <button type="submit" class="btn btn-outline-light">Recherche & Filter</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </nav>
 </header>
-  {% endblock %}
+{% endblock %}

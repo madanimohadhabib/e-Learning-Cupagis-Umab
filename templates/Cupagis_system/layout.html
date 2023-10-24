@@ -16,16 +16,17 @@
   <body>
     
     {% block content %}
-    <div id="header">
+ 
         {% include '../Cupagis_system/header.html' %}
-    </div>
+  
     
     <div id="content">
         {% include '../modules/lists_modules.html' %}
+        
     </div>
 
     <div id="footer">
-        <!-- Votre pied de page ici -->
+      {% include '../Cupagis_system/footer.html' %}
     </div>
    
     {% endblock %}
