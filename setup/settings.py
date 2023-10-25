@@ -78,10 +78,10 @@ WSGI_APPLICATION = 'setup.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'cupagis', 
-        'USER': 'cupagisdb',
-        'PASSWORD': 'XSJKZ7Pt18OZIMN4VEhJbFThFPMEH9xH',
-        'HOST': 'dpg-cks5vjfd47qs73arpvo0-a', 
+        'NAME': 'postgres', 
+        'USER': 'postgres',
+        'PASSWORD': 'cupagis2023',
+        'HOST': 'db.jhnunegrkwuuolcqvjtu.supabase.co', 
         'PORT': '5432',
     }
 }
