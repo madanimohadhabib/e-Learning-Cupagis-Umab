@@ -123,7 +123,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # Répertoire pour les fichiers statiques de l'application
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles','static')  # Répertoire pour les fichiers statiques collectés en production
+#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles','static')  # Répertoire pour les fichiers statiques collectés en production
 
 # Paramètres de fichiers média
 MEDIA_URL = '/media/'
