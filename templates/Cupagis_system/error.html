@@ -1,0 +1,59 @@
+{% extends "../Cupagis_system/layout.html" %}
+
+{% block content %}
+{% load static %}
+<style>
+    body {
+        background: #dedede;
+    }
+    .page-wrap {
+        min-height: 100vh;
+    }
+</style>
+
+
+<!------ Include the above in your HEAD tag ---------->
+
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-success">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'liste_modules' %}">
+          <img src="{% static 'logo-cupagis.png' %}" alt="Cupagis" style="max-width:50px;">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link text-light" aria-current="page" href="{% url 'liste_modules' %}">Accueil</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+
+<div class="page-wrap d-flex flex-row align-items-center">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 text-center">
+                <span class=" badge rounded-pill bg-warning text-l" style="font-size: 55px;">404</span>
+                <div class="mb-4 lead">La page que vous recherchez n’existe pas.</div>
+                <a href="{% url 'liste_modules' %}" class="btn bg-success text-light">Retour à l'accueil</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div id="footer" class="bg-success text-light p-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="text-center">&copy; 2023 Tous droits réservés par Cupagis-umab et devloppé par <a href="https://www.instagram.com/ma_habibou/" target="_blank" class="text-light" style="text-decoration: none; font-weight: bold;">Habibou</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
