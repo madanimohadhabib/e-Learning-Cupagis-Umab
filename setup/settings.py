@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-#^dnd8)wdg)j1n=6ayo7xxm8b($i!z*lsj8p#(*7a_jz(%+#ui
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.onrender.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -75,17 +75,13 @@ WSGI_APPLICATION = 'setup.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgres', 
-        'USER': 'postgres',
-        'PASSWORD': 'cupagis2023',
-        'HOST': 'db.jhnunegrkwuuolcqvjtu.supabase.co', 
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -123,7 +119,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # Répertoire pour les fichiers statiques de l'application
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Répertoire pour les fichiers statiques collectés en production
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles','static')  # Répertoire pour les fichiers statiques collectés en production
 
 # Paramètres de fichiers média
 MEDIA_URL = '/media/'

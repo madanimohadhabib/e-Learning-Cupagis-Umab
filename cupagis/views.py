@@ -1,6 +1,7 @@
 from django.shortcuts import render,get_object_or_404
 from .models import Module,TP, Cour, Expose
 from django.db.models import Q
+from PyPDF2 import PdfFileReader
 
 
 def liste_modules(request):
